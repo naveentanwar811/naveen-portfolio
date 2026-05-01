@@ -617,7 +617,7 @@
       display: grid;
       grid-template-columns: 0.82fr 1.18fr;
       gap: 18px;
-      align-items: start;
+      align-items: stretch;
     }
 
     .skill-panel {
@@ -626,6 +626,8 @@
       color: #fff;
       background: linear-gradient(135deg, #17413d, #0f766e);
       box-shadow: 0 20px 50px rgba(15, 79, 75, 0.22);
+      display: flex;
+      flex-direction: column;
     }
 
     .skill-panel h3 {
@@ -642,12 +644,16 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
       margin-top: 22px;
+      flex: 1;
     }
 
     .mini-metric {
-      padding: 14px;
+      padding: 16px 14px;
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.12);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .mini-metric strong {
@@ -1412,16 +1418,16 @@
               <span>Power BI, Looker, Tableau</span>
             </div>
             <div class="mini-metric">
-              <strong>Data</strong>
-              <span>BigQuery, PostgreSQL, Python</span>
+              <strong>DATA</strong>
+              <span>BigQuery, PostgreSQL, GCP, Python</span>
             </div>
             <div class="mini-metric">
               <strong>Ops</strong>
-              <span>SLA, KPI, quality metrics</span>
+              <span>SLA, KPI, Quality Metrics</span>
             </div>
             <div class="mini-metric">
-              <strong>People</strong>
-              <span>Clients and stakeholders</span>
+              <strong>PEOPLE</strong>
+              <span>Clients and Stakeholders</span>
             </div>
           </div>
         </aside>
@@ -1588,7 +1594,8 @@
           <ul>
             <li>Analyzed impressions, clicks, conversions, CTR, spend, ROI, and client KPIs from marketing datasets structured for BigQuery and BI consumption.</li>
             <li>Delivered reusable client templates with drill-through, tooltips, scheduled refreshes, role-based access, Looker-style exploration, and stakeholder delivery.</li>
-            <li><strong>Business Impact:</strong> Tracked ₹50L+ in marketing spend | Improved campaign ROI by 25% through data-driven insights</li>
+            <li><strong>Business Impact:</strong> Automated reporting via Power BI, reducing effort by ~50% and turnaround time by ~40%. | Enabled faster optimizations, driving a 15%+ improvement in campaign ROI.
+</li>
           </ul>
         </article>
         <article class="card project-card reveal">
@@ -1736,7 +1743,7 @@
   </main>
 
   <footer class="footer">
-    <span>Portfolio of Naveen Kumar. Business Intelligence Manager.</span>
+    <span></span>
   </footer>
 
   <script>
@@ -1782,6 +1789,20 @@
 
     resumeMenus.forEach((menu) => {
       const trigger = menu.querySelector(".resume-trigger");
+      
+      // Open on hover
+      menu.addEventListener("mouseenter", () => {
+        menu.classList.add("open");
+        trigger.setAttribute("aria-expanded", "true");
+      });
+
+      // Close on mouse leave
+      menu.addEventListener("mouseleave", () => {
+        menu.classList.remove("open");
+        trigger.setAttribute("aria-expanded", "false");
+      });
+
+      // Keep click functionality as backup
       trigger.addEventListener("click", (event) => {
         event.stopPropagation();
         const isOpen = menu.classList.contains("open");
