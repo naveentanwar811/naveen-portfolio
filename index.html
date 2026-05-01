@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Portfolio of Naveen Kumar, Business Intelligence Manager specializing in Power BI, Tableau, Fabric, Databricks, SQL, Python, data visualization, and stakeholder reporting." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <title>Naveen Kumar | Business Intelligence Manager</title>
   <style>
     :root {
@@ -70,7 +71,7 @@
     }
 
     .nav-inner {
-      width: min(var(--max), calc(100% - 32px));
+      width: calc(100% - 32px);
       min-height: 72px;
       margin: 0 auto;
       display: flex;
@@ -130,10 +131,6 @@
     }
 
     .nav-actions {
-      position: absolute;
-      top: 50%;
-      right: 16px;
-      transform: translateY(-50%);
       display: flex;
       align-items: center;
       gap: 10px;
@@ -169,6 +166,40 @@
       color: #fff;
       border-color: var(--teal-dark);
       background: var(--teal-dark);
+    }
+
+    @media (min-width: 1320px) {
+      .nav-inner {
+        width: calc(100% - 64px);
+      }
+    }
+
+    @media (max-width: 1180px) and (min-width: 921px) {
+      .brand {
+        min-width: 160px;
+      }
+
+      .nav-inner {
+        gap: 10px;
+      }
+
+      .nav-links {
+        gap: 2px;
+      }
+
+      .nav-links a {
+        padding: 8px 9px;
+        font-size: 0.84rem;
+      }
+
+      .nav-actions {
+        gap: 7px;
+      }
+
+      .nav-action {
+        padding: 9px 10px;
+        font-size: 0.8rem;
+      }
     }
 
     .menu-toggle {
