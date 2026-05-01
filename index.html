@@ -823,14 +823,14 @@
       .nav-actions {
         grid-column: 1 / -1;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: 8px;
       }
 
       .nav-action {
         min-height: 42px;
-        padding: 10px 9px;
-        font-size: 0.84rem;
+        padding: 10px 7px;
+        font-size: 0.8rem;
       }
 
       .nav-links {
@@ -991,6 +991,10 @@
         gap: 9px;
       }
 
+      .nav-actions {
+        grid-template-columns: 1fr;
+      }
+
       .btn {
         min-height: 44px;
         padding: 11px 12px;
@@ -1118,6 +1122,7 @@
 
       <div class="nav-actions" aria-label="Resume actions">
         <button class="nav-action" type="button" id="exportPdf">Export PDF</button>
+        <a class="nav-action" href="tel:+919650647247">Call Naveen</a>
         <a class="nav-action primary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download>Resume</a>
       </div>
 
@@ -1141,6 +1146,7 @@
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="mailto:naveentanwar811@gmail.com">Email Naveen</a>
+          <a class="btn btn-secondary" href="tel:+919650647247">Call Naveen</a>
           <a class="btn btn-secondary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download>Download Resume</a>
           <a class="btn btn-secondary" href="https://www.linkedin.com/in/naveen-kumar-490b59221/" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
