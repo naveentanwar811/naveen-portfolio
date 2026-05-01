@@ -168,6 +168,56 @@
       background: var(--teal-dark);
     }
 
+    .resume-download {
+      display: inline-flex;
+      align-items: center;
+      min-height: 46px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 12px 26px rgba(15, 79, 75, 0.08);
+    }
+
+    .resume-download .resume-label {
+      padding: 0 12px 0 14px;
+      color: var(--teal-dark);
+      font-size: 0.9rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .resume-download a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: stretch;
+      min-width: 54px;
+      padding: 0 13px;
+      color: var(--ink);
+      font-size: 0.88rem;
+      font-weight: 900;
+      transition: background 180ms ease, color 180ms ease;
+    }
+
+    .resume-download a + a {
+      border-left: 1px solid var(--line);
+    }
+
+    .resume-download a:hover {
+      color: #fff;
+      background: var(--teal-dark);
+    }
+
+    .resume-download a.primary {
+      color: #fff;
+      background: var(--teal-dark);
+    }
+
+    .resume-download a.primary:hover {
+      background: #0b3f3c;
+    }
+
     @media (min-width: 1320px) {
       .nav-inner {
         width: calc(100% - 64px);
@@ -199,6 +249,17 @@
       .nav-action {
         padding: 9px 10px;
         font-size: 0.8rem;
+      }
+
+      .nav-actions .resume-download {
+        min-height: 40px;
+      }
+
+      .nav-actions .resume-download .resume-label,
+      .nav-actions .resume-download a {
+        padding-right: 9px;
+        padding-left: 9px;
+        font-size: 0.78rem;
       }
     }
 
@@ -785,6 +846,11 @@
         flex: 1;
       }
 
+      .nav-actions .resume-download {
+        width: 100%;
+        justify-content: center;
+      }
+
       .hero,
       .section-head,
       .skill-layout,
@@ -856,6 +922,10 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
+      }
+
+      .nav-actions .resume-download {
+        grid-column: 1 / -1;
       }
 
       .nav-action {
@@ -987,6 +1057,18 @@
 
       .btn {
         width: 100%;
+      }
+
+      .resume-download {
+        width: 100%;
+      }
+
+      .resume-download .resume-label {
+        flex: 1;
+      }
+
+      .resume-download a {
+        flex: 0 0 auto;
       }
     }
 
@@ -1154,8 +1236,11 @@
       <div class="nav-actions" aria-label="Resume actions">
         <button class="nav-action" type="button" id="exportPdf">Export PDF</button>
         <a class="nav-action" href="tel:+919650647247">Call Naveen</a>
-        <a class="nav-action" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download>Resume Word</a>
-        <a class="nav-action primary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.pdf" download>Resume PDF</a>
+        <div class="resume-download" aria-label="Download resume">
+          <span class="resume-label">Resume:</span>
+          <a href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download>Word</a>
+          <a class="primary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.pdf" download>PDF</a>
+        </div>
       </div>
 
       <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
@@ -1179,8 +1264,11 @@
         <div class="hero-actions">
           <a class="btn btn-primary" href="mailto:naveentanwar811@gmail.com">Email Naveen</a>
           <a class="btn btn-secondary" href="tel:+919650647247">Call Naveen</a>
-          <a class="btn btn-secondary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.pdf" download>Resume PDF</a>
-          <a class="btn btn-secondary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download>Resume Word</a>
+          <div class="resume-download" aria-label="Download resume">
+            <span class="resume-label">Resume:</span>
+            <a href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download>Word</a>
+            <a class="primary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.pdf" download>PDF</a>
+          </div>
           <a class="btn btn-secondary" href="https://www.linkedin.com/in/naveen-kumar-490b59221/" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
         <div class="hero-stats" aria-label="Career highlights">
@@ -1525,8 +1613,11 @@
           <div class="contact-actions">
             <a class="btn btn-primary" href="mailto:naveentanwar811@gmail.com">Send Email</a>
             <a class="btn btn-secondary" href="tel:+919650647247">Call</a>
-            <a class="btn btn-secondary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.pdf" download>Resume PDF</a>
-            <a class="btn btn-secondary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download>Resume Word</a>
+            <div class="resume-download" aria-label="Download resume">
+              <span class="resume-label">Resume:</span>
+              <a href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download>Word</a>
+              <a class="primary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.pdf" download>PDF</a>
+            </div>
           </div>
         </div>
 
