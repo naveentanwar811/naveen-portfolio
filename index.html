@@ -168,60 +168,101 @@
       background: var(--teal-dark);
     }
 
-    .resume-download {
-      display: inline-grid;
-      grid-template-columns: max-content 58px 54px;
-      align-items: center;
-      width: fit-content;
-      min-height: 46px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow: 0 12px 26px rgba(15, 79, 75, 0.08);
+    .resume-menu {
+      position: relative;
+      display: inline-flex;
+      align-items: stretch;
+      flex: 0 0 auto;
     }
 
-    .resume-download .resume-label {
+    .resume-trigger {
       display: inline-flex;
       align-items: center;
-      align-self: stretch;
       justify-content: center;
-      padding: 0 13px;
-      color: var(--teal-dark);
+      gap: 8px;
+      min-height: 46px;
+      padding: 12px 15px;
+      border: 1px solid var(--teal-dark);
+      border-radius: 8px;
+      color: #fff;
+      background: var(--teal-dark);
+      font: inherit;
       font-size: 0.9rem;
       font-weight: 900;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
+      box-shadow: 0 14px 28px rgba(15, 79, 75, 0.18);
+      transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .resume-trigger:hover,
+    .resume-menu.open .resume-trigger {
+      transform: translateY(-2px);
+      background: #0b3f3c;
+      box-shadow: 0 18px 34px rgba(15, 79, 75, 0.22);
+    }
+
+    .resume-caret {
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid currentColor;
+      transition: transform 180ms ease;
+    }
+
+    .resume-menu.open .resume-caret {
+      transform: rotate(180deg);
+    }
+
+    .resume-options {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      z-index: 95;
+      display: grid;
+      min-width: 180px;
+      padding: 6px;
+      border: 1px solid rgba(23, 32, 36, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 18px 44px rgba(23, 32, 36, 0.16);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+    }
+
+    .resume-menu.open .resume-options {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .resume-options a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 11px 12px;
+      border-radius: 7px;
+      color: var(--ink);
+      font-size: 0.9rem;
+      font-weight: 850;
       white-space: nowrap;
     }
 
-    .resume-download a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      align-self: stretch;
-      min-width: 0;
-      padding: 0;
-      color: var(--ink);
-      font-size: 0.88rem;
+    .resume-options a:hover {
+      color: var(--teal-dark);
+      background: rgba(15, 118, 110, 0.09);
+    }
+
+    .resume-options span {
+      color: var(--muted);
+      font-size: 0.74rem;
       font-weight: 900;
-      transition: background 180ms ease, color 180ms ease;
-    }
-
-    .resume-download a + a {
-      border-left: 1px solid var(--line);
-    }
-
-    .resume-download a:hover {
-      color: #fff;
-      background: var(--teal-dark);
-    }
-
-    .resume-download a.primary {
-      color: #fff;
-      background: var(--teal-dark);
-    }
-
-    .resume-download a.primary:hover {
-      background: #0b3f3c;
+      letter-spacing: 0.04em;
     }
 
     @media (min-width: 1320px) {
@@ -257,13 +298,13 @@
         font-size: 0.8rem;
       }
 
-      .nav-actions .resume-download {
+      .nav-actions .resume-menu {
         min-height: 40px;
-        grid-template-columns: max-content 48px 46px;
       }
 
-      .nav-actions .resume-download .resume-label,
-      .nav-actions .resume-download a {
+      .nav-actions .resume-trigger {
+        min-height: 40px;
+        padding: 10px 12px;
         font-size: 0.78rem;
       }
     }
@@ -851,9 +892,8 @@
         flex: 1;
       }
 
-      .nav-actions .resume-download {
-        width: fit-content;
-        justify-content: center;
+      .nav-actions .resume-menu {
+        width: 100%;
       }
 
       .hero,
@@ -929,15 +969,13 @@
         gap: 8px;
       }
 
-      .nav-actions .resume-download {
+      .nav-actions .resume-menu {
         grid-column: 1 / -1;
-        justify-self: center;
-        width: fit-content;
+        width: 100%;
       }
 
-      .nav-actions .resume-download .resume-label,
-      .nav-actions .resume-download a {
-        text-align: center;
+      .nav-actions .resume-trigger {
+        width: 100%;
       }
 
       .nav-action {
@@ -1071,18 +1109,12 @@
         width: 100%;
       }
 
-      .resume-download {
-        align-self: flex-start;
-        width: fit-content;
-        grid-template-columns: max-content 58px 54px;
+      .resume-menu {
+        width: 100%;
       }
 
-      .resume-download .resume-label {
-        justify-content: center;
-      }
-
-      .resume-download a {
-        justify-content: center;
+      .resume-trigger {
+        width: 100%;
       }
     }
 
@@ -1250,10 +1282,14 @@
       <div class="nav-actions" aria-label="Resume actions">
         <button class="nav-action" type="button" id="exportPdf">Export PDF</button>
         <a class="nav-action" href="tel:+919650647247">Call Naveen</a>
-        <div class="resume-download" aria-label="Download resume">
-          <span class="resume-label">Resume:</span>
-          <a href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download>Word</a>
-          <a class="primary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.pdf" download>PDF</a>
+        <div class="resume-menu">
+          <button class="resume-trigger" type="button" aria-expanded="false">
+            Resume <span class="resume-caret" aria-hidden="true"></span>
+          </button>
+          <div class="resume-options" role="menu">
+            <a href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.pdf" download role="menuitem">Download PDF <span>PDF</span></a>
+            <a href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download role="menuitem">Download Word <span>DOCX</span></a>
+          </div>
         </div>
       </div>
 
@@ -1278,10 +1314,14 @@
         <div class="hero-actions">
           <a class="btn btn-primary" href="mailto:naveentanwar811@gmail.com">Email Naveen</a>
           <a class="btn btn-secondary" href="tel:+919650647247">Call Naveen</a>
-          <div class="resume-download" aria-label="Download resume">
-            <span class="resume-label">Resume:</span>
-            <a href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download>Word</a>
-            <a class="primary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.pdf" download>PDF</a>
+          <div class="resume-menu">
+            <button class="resume-trigger" type="button" aria-expanded="false">
+              Resume <span class="resume-caret" aria-hidden="true"></span>
+            </button>
+            <div class="resume-options" role="menu">
+              <a href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.pdf" download role="menuitem">Download PDF <span>PDF</span></a>
+              <a href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download role="menuitem">Download Word <span>DOCX</span></a>
+            </div>
           </div>
           <a class="btn btn-secondary" href="https://www.linkedin.com/in/naveen-kumar-490b59221/" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
@@ -1627,10 +1667,14 @@
           <div class="contact-actions">
             <a class="btn btn-primary" href="mailto:naveentanwar811@gmail.com">Send Email</a>
             <a class="btn btn-secondary" href="tel:+919650647247">Call</a>
-            <div class="resume-download" aria-label="Download resume">
-              <span class="resume-label">Resume:</span>
-              <a href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download>Word</a>
-              <a class="primary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.pdf" download>PDF</a>
+            <div class="resume-menu">
+              <button class="resume-trigger" type="button" aria-expanded="false">
+                Resume <span class="resume-caret" aria-hidden="true"></span>
+              </button>
+              <div class="resume-options" role="menu">
+                <a href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.pdf" download role="menuitem">Download PDF <span>PDF</span></a>
+                <a href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download role="menuitem">Download Word <span>DOCX</span></a>
+              </div>
             </div>
           </div>
         </div>
@@ -1662,8 +1706,19 @@
     const navLinks = document.querySelector(".nav-links");
     const progress = document.querySelector(".scroll-progress");
     const exportPdf = document.querySelector("#exportPdf");
+    const resumeMenus = [...document.querySelectorAll(".resume-menu")];
     const sections = [...document.querySelectorAll("main section[id]")];
     const navItems = [...document.querySelectorAll(".nav-links a")];
+
+    const closeResumeMenus = () => {
+      resumeMenus.forEach((menu) => {
+        menu.classList.remove("open");
+        const trigger = menu.querySelector(".resume-trigger");
+        if (trigger) {
+          trigger.setAttribute("aria-expanded", "false");
+        }
+      });
+    };
 
     menuButton.addEventListener("click", () => {
       const isOpen = navLinks.classList.toggle("open");
@@ -1678,11 +1733,36 @@
         menuButton.classList.remove("open");
         menuButton.setAttribute("aria-expanded", "false");
         menuButton.setAttribute("aria-label", "Open navigation");
+        closeResumeMenus();
       });
     });
 
     exportPdf.addEventListener("click", () => {
+      closeResumeMenus();
       window.print();
+    });
+
+    resumeMenus.forEach((menu) => {
+      const trigger = menu.querySelector(".resume-trigger");
+      trigger.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const isOpen = menu.classList.contains("open");
+        closeResumeMenus();
+        menu.classList.toggle("open", !isOpen);
+        trigger.setAttribute("aria-expanded", String(!isOpen));
+      });
+
+      menu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeResumeMenus);
+      });
+    });
+
+    document.addEventListener("click", closeResumeMenus);
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeResumeMenus();
+      }
     });
 
     const revealObserver = new IntersectionObserver((entries) => {
