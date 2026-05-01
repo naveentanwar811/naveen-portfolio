@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Naveen Kumar, Business Intelligence Manager specializing in Power BI, Tableau, Fabric, Databricks, SQL, Python, data visualization, and stakeholder reporting." />
+  <title>Naveen Kumar | Business Intelligence Manager</title>
+  <style>
+    :root {
+      --bg: #f7f8f4;
+      --surface: #ffffff;
+      --ink: #172024;
+      --muted: #5c6870;
+      --line: rgba(23, 32, 36, 0.12);
+      --teal: #0f766e;
+      --teal-dark: #104f4b;
+      --gold: #c88217;
+      --green: #2f7d4f;
+      --coral: #b95f45;
+      --shadow: 0 20px 60px rgba(22, 38, 42, 0.12);
+      --radius: 8px;
+      --max: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, rgba(15, 118, 110, 0.08), transparent 420px),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 90;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--gold), var(--coral));
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      border-bottom: 1px solid rgba(23, 32, 36, 0.08);
+      background: rgba(247, 248, 244, 0.88);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      width: min(var(--max), calc(100% - 32px));
+      min-height: 72px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 184px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--teal), var(--green));
+      box-shadow: 0 10px 24px rgba(15, 118, 110, 0.25);
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 650;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .nav-links a {
+      padding: 9px 12px;
+      border-radius: 999px;
+      color: #39454c;
+      font-size: 0.92rem;
+      font-weight: 700;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--teal-dark);
+      background: rgba(15, 118, 110, 0.1);
+    }
+
+    .nav-actions {
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    .nav-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--teal-dark);
+      background: rgba(255, 255, 255, 0.78);
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 850;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .nav-action:hover {
+      transform: translateY(-2px);
+      background: #fff;
+      box-shadow: 0 12px 26px rgba(15, 79, 75, 0.14);
+    }
+
+    .nav-action.primary {
+      color: #fff;
+      border-color: var(--teal-dark);
+      background: var(--teal-dark);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      background: currentColor;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    .menu-toggle.open span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    section {
+      scroll-margin-top: 92px;
+    }
+
+    .hero {
+      width: min(var(--max), calc(100% - 32px));
+      min-height: calc(100vh - 72px);
+      margin: 0 auto;
+      padding: 54px 0 34px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.72fr);
+      align-items: center;
+      gap: clamp(28px, 5vw, 72px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: var(--teal-dark);
+      font-size: 0.84rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin-bottom: 18px;
+      font-size: clamp(2.7rem, 7vw, 6.3rem);
+      line-height: 0.94;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin-bottom: 26px;
+      color: #39454c;
+      font-size: clamp(1.02rem, 1.8vw, 1.3rem);
+    }
+
+    .hero-actions,
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 12px 17px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      font-weight: 800;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: var(--teal-dark);
+      box-shadow: 0 16px 32px rgba(15, 79, 75, 0.22);
+    }
+
+    .btn-secondary {
+      color: var(--ink);
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 740px;
+    }
+
+    .stat {
+      padding: 16px;
+      border: 1px solid rgba(23, 32, 36, 0.1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 12px 36px rgba(23, 32, 36, 0.06);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(1.5rem, 3vw, 2.3rem);
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .portrait-wrap {
+      position: relative;
+      isolation: isolate;
+      align-self: stretch;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portrait-accent {
+      position: absolute;
+      inset: 36px 0 36px 58px;
+      z-index: -1;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(15, 118, 110, 0.18), rgba(200, 130, 23, 0.16)),
+        #e7eee8;
+      transform: rotate(3deg);
+    }
+
+    .portrait {
+      width: min(390px, 100%);
+      aspect-ratio: 0.77;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      animation: floatIn 800ms ease both;
+    }
+
+    .availability {
+      position: absolute;
+      left: 0;
+      bottom: 46px;
+      width: min(278px, 76%);
+      padding: 15px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 18px 44px rgba(23, 32, 36, 0.16);
+      backdrop-filter: blur(16px);
+    }
+
+    .availability strong {
+      display: block;
+      line-height: 1.25;
+    }
+
+    .availability span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 650;
+    }
+
+    .section {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 78px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(260px, 0.42fr);
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    .section-head h2 {
+      margin-bottom: 8px;
+      font-size: clamp(2rem, 4vw, 3.45rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    .band {
+      background: #eef4ef;
+      border-top: 1px solid rgba(23, 32, 36, 0.08);
+      border-bottom: 1px solid rgba(23, 32, 36, 0.08);
+    }
+
+    .impact-grid,
+    .project-grid,
+    .credential-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      min-height: 100%;
+      padding: 22px;
+      border: 1px solid rgba(23, 32, 36, 0.1);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 12px 34px rgba(23, 32, 36, 0.07);
+      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(15, 118, 110, 0.24);
+      box-shadow: 0 20px 54px rgba(23, 32, 36, 0.11);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.08rem;
+      line-height: 1.25;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .chip-list li {
+      padding: 8px 11px;
+      border: 1px solid rgba(15, 118, 110, 0.18);
+      border-radius: 999px;
+      color: var(--teal-dark);
+      background: rgba(15, 118, 110, 0.08);
+      font-size: 0.91rem;
+      font-weight: 750;
+    }
+
+    .skill-layout {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .skill-panel {
+      padding: 26px;
+      border-radius: 8px;
+      color: #fff;
+      background: linear-gradient(135deg, #17413d, #0f766e);
+      box-shadow: 0 20px 50px rgba(15, 79, 75, 0.22);
+    }
+
+    .skill-panel h3 {
+      margin-bottom: 10px;
+      font-size: 1.35rem;
+    }
+
+    .skill-panel p {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .skill-panel .mini-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .mini-metric {
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .mini-metric strong {
+      display: block;
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .mini-metric span {
+      display: block;
+      margin-top: 8px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .skill-groups {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 16px;
+    }
+
+    .role {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 18px;
+      padding: 22px;
+      border: 1px solid rgba(23, 32, 36, 0.1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: 0 12px 34px rgba(23, 32, 36, 0.06);
+    }
+
+    .role-time {
+      color: var(--teal-dark);
+      font-weight: 850;
+    }
+
+    .role-company {
+      margin-bottom: 5px;
+      font-size: 1.18rem;
+      font-weight: 850;
+    }
+
+    .role-title {
+      margin-bottom: 12px;
+      color: var(--gold);
+      font-weight: 850;
+    }
+
+    .role ul,
+    .project-card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .role li,
+    .project-card li {
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 4px;
+      background: linear-gradient(90deg, var(--teal), var(--gold), var(--coral));
+    }
+
+    .project-tag {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--teal-dark);
+      background: rgba(15, 118, 110, 0.09);
+      font-size: 0.8rem;
+      font-weight: 850;
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.55fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .contact-panel {
+      padding: clamp(28px, 5vw, 48px);
+      border-radius: 8px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(15, 79, 75, 0.96), rgba(19, 82, 72, 0.9)),
+        #104f4b;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-panel h2 {
+      margin-bottom: 12px;
+      font-size: clamp(2rem, 4.5vw, 4rem);
+      line-height: 1;
+    }
+
+    .contact-panel p {
+      max-width: 690px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 1.06rem;
+    }
+
+    .contact-panel .btn-primary {
+      color: var(--teal-dark);
+      background: #fff;
+      box-shadow: none;
+    }
+
+    .contact-panel .btn-secondary {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.34);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-card {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-item {
+      padding: 20px;
+      border: 1px solid rgba(23, 32, 36, 0.1);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 12px 34px rgba(23, 32, 36, 0.07);
+    }
+
+    .contact-item span {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .contact-item strong {
+      overflow-wrap: anywhere;
+      font-size: 1rem;
+    }
+
+    .footer {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 38px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 650;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 650ms ease, transform 650ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes floatIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (max-width: 920px) {
+      .nav-links {
+        position: absolute;
+        top: 126px;
+        right: 16px;
+        left: 16px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        border-radius: 8px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-inner {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px 0;
+      }
+
+      .brand {
+        flex: 1 1 auto;
+      }
+
+      .nav-actions {
+        position: static;
+        transform: none;
+        order: 3;
+        width: 100%;
+        justify-content: stretch;
+      }
+
+      .nav-action {
+        flex: 1;
+      }
+
+      .hero,
+      .section-head,
+      .skill-layout,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 42px;
+      }
+
+      .portrait-wrap {
+        min-height: auto;
+        justify-content: flex-start;
+      }
+
+      .portrait {
+        width: min(360px, 88vw);
+      }
+
+      .availability {
+        left: min(232px, 35vw);
+        bottom: 22px;
+      }
+
+      .impact-grid,
+      .project-grid,
+      .credential-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .role {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-inner,
+      .hero,
+      .section,
+      .footer {
+        width: min(100% - 24px, var(--max));
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .brand small {
+        display: none;
+      }
+
+      .hero-stats,
+      .impact-grid,
+      .project-grid,
+      .credential-grid,
+      .skill-panel .mini-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 56px 0;
+      }
+
+      .portrait-accent {
+        inset: 22px 0 22px 34px;
+      }
+
+      .availability {
+        position: static;
+        width: min(360px, 100%);
+        margin-top: -24px;
+        transform: translateX(14px);
+      }
+
+      .hero-actions,
+      .contact-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    @media print {
+      @page {
+        margin: 14mm;
+      }
+
+      body {
+        background: #fff;
+        color: #111;
+      }
+
+      .scroll-progress,
+      .nav,
+      .hero-actions,
+      .contact-actions,
+      .footer {
+        display: none !important;
+      }
+
+      main {
+        overflow: visible;
+      }
+
+      .hero,
+      .section {
+        width: 100%;
+        min-height: auto;
+        padding: 18px 0;
+      }
+
+      .hero {
+        grid-template-columns: 1.2fr 0.5fr;
+      }
+
+      .portrait {
+        width: 190px;
+        box-shadow: none;
+      }
+
+      .portrait-accent,
+      .availability {
+        display: none;
+      }
+
+      .band {
+        background: #fff;
+        border: 0;
+      }
+
+      .card,
+      .role,
+      .skill-panel,
+      .contact-panel,
+      .contact-item,
+      .stat {
+        break-inside: avoid;
+        box-shadow: none;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 1ms !important;
+        transition-duration: 1ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#home" aria-label="Naveen Kumar home">
+        <span class="brand-mark">NK</span>
+        <span>Naveen Kumar<small>Business Intelligence Manager</small></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#impact">Impact</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#credentials">Credentials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions" aria-label="Resume actions">
+        <button class="nav-action" type="button" id="exportPdf">Export PDF</button>
+        <a class="nav-action primary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download>Resume</a>
+      </div>
+
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero" aria-label="Profile introduction">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">BI leadership | Data analytics | Executive reporting</p>
+        <h1>Naveen Kumar</h1>
+        <p class="lead">
+          Business Intelligence Manager with 10+ years of experience turning complex operational,
+          marketing, finance, and process data into governed analytics, data pipelines,
+          executive-ready insights, and decisions stakeholders can act on.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:naveentanwar811@gmail.com">Email Naveen</a>
+          <a class="btn btn-secondary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download>Download Resume</a>
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/naveen-kumar-490b59221/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+        <div class="hero-stats" aria-label="Career highlights">
+          <div class="stat">
+            <strong>10+</strong>
+            <span>Years in BI, MIS, analytics, and stakeholder reporting</span>
+          </div>
+          <div class="stat">
+            <strong>6</strong>
+            <span>Major dashboard and process intelligence projects</span>
+          </div>
+          <div class="stat">
+            <strong>Global</strong>
+            <span>Internal and external client collaboration</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portrait-wrap reveal">
+        <div class="portrait-accent" aria-hidden="true"></div>
+        <img class="portrait" src="5418e0db-abdd-4c09-bb85-00239504733c.jpg" alt="Naveen Kumar portrait" />
+        <div class="availability">
+          <strong>Business intelligence leader</strong>
+          <span>Power BI, Tableau, Fabric, Databricks, SQL, Python</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="impact" class="band">
+      <div class="section">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Hiring snapshot</p>
+            <h2>Built for decision makers.</h2>
+          </div>
+          <p>Focused on dashboard strategy, KPI visibility, process improvement, and practical automation across business teams.</p>
+        </div>
+
+        <div class="impact-grid">
+          <article class="card reveal">
+            <h3>Executive reporting</h3>
+            <p>Creates leadership analytics for P&L, campaign performance, SLA performance, quality metrics, and operational health.</p>
+          </article>
+          <article class="card reveal">
+            <h3>BI delivery leadership</h3>
+            <p>Leads BI and process excellence workstreams, gathers requirements, manages expectations, validates logic, and improves delivery quality.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Data pipeline readiness</h3>
+            <p>Connects Fabric, Databricks, BigQuery, PostgreSQL, and pipeline outputs with Power BI, Tableau, and Looker for trusted analytics delivery.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Capabilities</p>
+          <h2>Data analytics stack plus business context.</h2>
+        </div>
+        <p>Strong blend of analytics engineering, BI delivery, stakeholder communication, and process ownership.</p>
+      </div>
+
+      <div class="skill-layout">
+        <aside class="skill-panel reveal">
+          <h3>Core value</h3>
+          <p>
+            I help teams turn scattered business data into governed datasets, reliable pipelines,
+            sharper KPI logic, and executive-ready analytics.
+          </p>
+          <div class="mini-metrics">
+            <div class="mini-metric">
+              <strong>BI</strong>
+              <span>Power BI, Looker, Tableau</span>
+            </div>
+            <div class="mini-metric">
+              <strong>Data</strong>
+              <span>BigQuery, PostgreSQL, Python</span>
+            </div>
+            <div class="mini-metric">
+              <strong>Ops</strong>
+              <span>SLA, KPI, quality metrics</span>
+            </div>
+            <div class="mini-metric">
+              <strong>People</strong>
+              <span>Clients and stakeholders</span>
+            </div>
+          </div>
+        </aside>
+
+        <div class="skill-groups">
+          <article class="card reveal">
+            <h3>Visualization and analytics</h3>
+            <ul class="chip-list">
+              <li>Power BI</li>
+              <li>Power Query</li>
+              <li>DAX</li>
+              <li>Power Pivot</li>
+              <li>Tableau</li>
+              <li>Looker</li>
+              <li>Looker Studio</li>
+              <li>Advanced Excel</li>
+              <li>Data visualization</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3>Data engineering support</h3>
+            <ul class="chip-list">
+              <li>Fabric</li>
+              <li>Databricks</li>
+              <li>Delta Lake</li>
+              <li>BigQuery</li>
+              <li>PostgreSQL</li>
+              <li>SQL</li>
+              <li>Python</li>
+              <li>Airflow</li>
+              <li>Data pipelines</li>
+              <li>Data warehousing</li>
+              <li>ETL workflows</li>
+              <li>Automation</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3>Business leadership</h3>
+            <ul class="chip-list">
+              <li>Requirement gathering</li>
+              <li>Client management</li>
+              <li>Stakeholder reporting</li>
+              <li>Executive presentations</li>
+              <li>Process improvement</li>
+              <li>SLA tracking</li>
+              <li>KPI governance</li>
+              <li>Quality management</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="band">
+      <div class="section">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Career path</p>
+            <h2>Experience across BI, analytics, and operations.</h2>
+          </div>
+          <p>Progressed from technical support and MIS into senior BI leadership, team ownership, and process excellence.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="role reveal">
+            <div class="role-time">Oct 2024 - Present</div>
+            <div>
+              <div class="role-company">Silverpush Pvt Ltd</div>
+              <div class="role-title">Business Intelligence Manager</div>
+              <ul>
+                <li>Leads a BI and analytics team for digital marketing data pipelines, KPI analysis, SLA tracking, and decision intelligence.</li>
+                <li>Builds Power BI, Looker, and Tableau analytics across campaign, operational, BigQuery, PostgreSQL, and warehouse datasets.</li>
+                <li>Integrates Fabric, Databricks, and pipeline outputs into trusted reporting layers for refreshable analytics and decision support.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role reveal">
+            <div class="role-time">Mar 2023 - Jul 2024</div>
+            <div>
+              <div class="role-company">Nexdigm Pvt Ltd</div>
+              <div class="role-title">Team Leader</div>
+              <ul>
+                <li>Led process excellence for contract lifecycle data management and KPI reporting.</li>
+                <li>Designed Power BI, Tableau, and Looker analytics for SLA, quality, and process performance monitoring.</li>
+                <li>Managed stakeholder relationships, analyzed bottlenecks, and implemented process improvement strategies.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role reveal">
+            <div class="role-time">Nov 2021 - Feb 2023</div>
+            <div>
+              <div class="role-company">Pantech, Gurgaon</div>
+              <div class="role-title">Freelance Power BI Consultant</div>
+              <ul>
+                <li>Created Power BI solutions for campaign status tracking, content calendar reporting, alerts, and subscriptions.</li>
+                <li>Worked directly with a digital marketing startup to translate requirements into practical reporting assets.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role reveal">
+            <div class="role-time">Jul 2018 - Oct 2021</div>
+            <div>
+              <div class="role-company">Wipro Ltd (Cision)</div>
+              <div class="role-title">Senior Executive</div>
+              <ul>
+                <li>Created Power BI analytics using Power Query, DAX, Power Pivot, SQL, and large operational datasets.</li>
+                <li>Prepared stakeholder reports, executive presentations, KPI dashboards, quality dashboards, and SLA analysis.</li>
+                <li>Supported quality management through feedback sessions, roster planning, shrinkage tracking, and performance monitoring.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role reveal">
+            <div class="role-time">Feb 2016 - Apr 2018</div>
+            <div>
+              <div class="role-company">Concentrix Daksh Services India Pvt. Ltd</div>
+              <div class="role-title">MIS Executive</div>
+              <ul>
+                <li>Prepared MIS, performance, quality, shrinkage, and roster reports for aligned teams.</li>
+                <li>Used Advanced Excel and Power BI to automate recurring analysis and improve reporting visibility.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role reveal">
+            <div class="role-time">Oct 2014 - Oct 2015</div>
+            <div>
+              <div class="role-company">Wipro BPS</div>
+              <div class="role-title">Technical Support Executive</div>
+              <ul>
+                <li>Provided client technical support, followed up through resolution, and occasionally supported team SME activities.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Selected projects</p>
+          <h2>Analytics solutions with business impact.</h2>
+        </div>
+        <p>Projects span profitability analytics, marketing performance, quality, SLA operations, forecasting, data pipelines, and process mining.</p>
+      </div>
+
+      <div class="project-grid">
+        <article class="card project-card reveal">
+          <span class="project-tag">Power BI + BigQuery + PostgreSQL</span>
+          <h3>Management P&L Analytics</h3>
+          <ul>
+            <li>Modeled sales, revenue, target, and profitability data across four business verticals using SQL-ready datasets from ERP, BigQuery, and PostgreSQL sources.</li>
+            <li>Built Power BI semantic logic, forecasting views, RLS, custom date slicers, and executive subscriptions for weekly, monthly, and annual business reviews.</li>
+          </ul>
+        </article>
+        <article class="card project-card reveal">
+          <span class="project-tag">Power BI Embedded + Looker + BigQuery</span>
+          <h3>Client Campaign Analytics</h3>
+          <ul>
+            <li>Analyzed impressions, clicks, conversions, CTR, spend, ROI, and client KPIs from marketing datasets structured for BigQuery and BI consumption.</li>
+            <li>Delivered reusable client templates with drill-through, tooltips, scheduled refreshes, role-based access, Looker-style exploration, and stakeholder delivery.</li>
+          </ul>
+        </article>
+        <article class="card project-card reveal">
+          <span class="project-tag">Power BI + PostgreSQL + Data Quality</span>
+          <h3>Quality Analytics</h3>
+          <ul>
+            <li>Monitored quality matrix performance using structured employee, sector, location, and monthly trend data from operational reporting tables.</li>
+            <li>Created error trend analysis, data quality checks, targeted drilldowns, and stakeholder views for faster root-cause analysis.</li>
+          </ul>
+        </article>
+        <article class="card project-card reveal">
+          <span class="project-tag">Tableau + SQL + Airflow</span>
+          <h3>SLA Operations Analytics</h3>
+          <ul>
+            <li>Developed SLA monitoring across category, sector, delay, signature time, backlog, and volume forecast metrics using governed SQL datasets.</li>
+            <li>Designed the analytics layer for scalable refreshes, Airflow-style pipeline scheduling, and changing client SLA requirements.</li>
+          </ul>
+        </article>
+        <article class="card project-card reveal">
+          <span class="project-tag">Python + Power BI + Pipelines</span>
+          <h3>Performance Forecasting</h3>
+          <ul>
+            <li>Built an SLA risk forecasting workflow using Python, pandas, scikit-learn, and structured operational data prepared for repeatable pipeline runs.</li>
+            <li>Published forecast outputs into Power BI for proactive risk mitigation, stakeholder communication, and monthly performance planning.</li>
+          </ul>
+        </article>
+        <article class="card project-card reveal">
+          <span class="project-tag">Celonis + SQL + Process Mining</span>
+          <h3>Process Mining Query Reduction</h3>
+          <ul>
+            <li>Used Celonis and process data analysis to identify bottlenecks, query volumes, and workflow patterns affecting SLA achievement.</li>
+            <li>Converted findings into an action plan with measurable query reduction, improved process flow, and stronger SLA adherence.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="credentials" class="band">
+      <div class="section">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Credentials</p>
+            <h2>Certifications and education.</h2>
+          </div>
+          <p>Formal learning across data analytics, BI tools, process improvement, Python, and business administration.</p>
+        </div>
+
+        <div class="credential-grid">
+          <article class="card reveal">
+            <h3>Certifications</h3>
+            <ul>
+              <li>Google Data Analytics Professional Certificate</li>
+              <li>Power BI: Data Visualization</li>
+              <li>Six Sigma Certification</li>
+              <li>Python Developer Certification</li>
+              <li>Tableau Essentials</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3>Education</h3>
+            <ul>
+              <li>IGNOU - Master of Business Administration, HRM, 2021</li>
+              <li>World Institute of Technology, MDU - Bachelor of Technology, 2013</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <h3>Best fit roles</h3>
+            <ul>
+              <li>Business Intelligence Manager</li>
+              <li>Power BI Lead</li>
+              <li>Data Analytics Manager</li>
+              <li>Analytics Engineer</li>
+              <li>Process Excellence Lead</li>
+              <li>Data Visualization and BI Specialist</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="contact">
+        <div class="contact-panel reveal">
+          <p class="eyebrow">Contact</p>
+          <h2>Ready for BI leadership, analytics, and reporting roles.</h2>
+          <p>
+            For hiring conversations, interview scheduling, or role-fit discussions, reach out by email,
+            phone, or LinkedIn.
+          </p>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="mailto:naveentanwar811@gmail.com">Send Email</a>
+            <a class="btn btn-secondary" href="tel:+919650647247">Call</a>
+            <a class="btn btn-secondary" href="Naveen%20Kumar_Business%20Intelligence%20Manager-10%20years.docx" download>Resume</a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <a class="contact-item reveal" href="mailto:naveentanwar811@gmail.com">
+            <span>Email</span>
+            <strong>naveentanwar811@gmail.com</strong>
+          </a>
+          <a class="contact-item reveal" href="tel:+919650647247">
+            <span>Phone</span>
+            <strong>+91 96506 47247</strong>
+          </a>
+          <a class="contact-item reveal" href="https://www.linkedin.com/in/naveen-kumar-490b59221/" target="_blank" rel="noreferrer">
+            <span>LinkedIn</span>
+            <strong>linkedin.com/in/naveen-kumar-490b59221</strong>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Portfolio of Naveen Kumar. Business Intelligence Manager.</span>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    const progress = document.querySelector(".scroll-progress");
+    const exportPdf = document.querySelector("#exportPdf");
+    const sections = [...document.querySelectorAll("main section[id]")];
+    const navItems = [...document.querySelectorAll(".nav-links a")];
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.classList.toggle("open", isOpen);
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+    });
+
+    navItems.forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open navigation");
+      });
+    });
+
+    exportPdf.addEventListener("click", () => {
+      window.print();
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+    const updateProgress = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const percentage = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+      progress.style.width = `${percentage}%`;
+    };
+
+    const activeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navItems.forEach((item) => {
+            item.classList.toggle("active", item.getAttribute("href") === `#${entry.target.id}`);
+          });
+        }
+      });
+    }, { rootMargin: "-36% 0px -54% 0px", threshold: 0 });
+
+    sections.forEach((section) => activeObserver.observe(section));
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    updateProgress();
+  </script>
+</body>
+</html>
